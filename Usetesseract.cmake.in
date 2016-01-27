@@ -1,0 +1,39 @@
+#
+# This module is provided as tesseract_USE_FILE 
+# It can be INCLUDEd in a project to load the needed compiler and linker
+# settings to use the tesseract library.
+#
+
+IF(NOT tesseract_USE_FILE_INCLUDED)
+  SET(tesseract_USE_FILE_INCLUDED 1)
+  
+  CMAKE_POLICY(PUSH)
+  CMAKE_POLICY(SET CMP0012 NEW) # if() recognizes numbers and boolean constants
+  
+  ## Set tesseract binary dir path 
+  SET(tesseract_DIR "@tesseract_BINARY_DIR@" )
+  
+  ## Set tesseract source dir path 
+  SET(tesseract_SOURCE_DIR "@tesseract_SOURCE_DIR@" )
+
+  # Add include directories needed to use tesseract library 
+  # Use a temporary CMake variable to store the list of directory paths
+  # (it is required because this way directory names
+  # that do not contain space and those that do contain space
+  # work equally well).
+  SET(tesseract_INCLUDE_DIRS_TEMP "@tesseract_INCLUDE_DIRS@")
+  INCLUDE_DIRECTORIES(${tesseract_INCLUDE_DIRS_TEMP})
+  
+  # Add link directories needed to use Plus library
+  # Use a temporary CMake variable to store the list of directory paths
+  # (it is required because this way directory names
+  # that do not contain space and those that do contain space
+  # work equally well).
+  SET(tesseract_LIBRARY_DIRS_TEMP "@tesseract_LIBRARY_DIRS@")
+  LINK_DIRECTORIES(${tesseract_LIBRARY_DIRS_TEMP})
+  
+  SET(tesseract_DEPENDENCIES @tesseract_DEPENDENCIES@ )
+
+  CMAKE_POLICY(POP)
+  
+ENDIF(NOT tesseract_USE_FILE_INCLUDED)

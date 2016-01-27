@@ -7,6 +7,8 @@ add_definitions(-DUSE_STD_NAMESPACE)
 add_definitions(-fPIC)
 add_definitions(-DWINDLLNAME="tesseract")
 
+SET(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR})
+
 if(WIN32)
     set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MT")
     set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MTd /Zi")
@@ -88,6 +90,16 @@ MERGE_STATIC_LIBRARIES (tesseract_static ALL
     "${LEPTONICA_LIBRARIES}${TESSERACT_LIBRARIES_PATHS}"
 )
 install(TARGETS tesseract_static DESTINATION lib)
+
+SET( tesseract_INCLUDE_DIRS ${CMAKE_INSTALL_PREFIX}/include )
+SET( tesseract_LIBRARY_DIRS ${CMAKE_INSTALL_PREFIX}/lib )
+SET( tesseract_DATA_DIR ${CMAKE_INSTALL_PREFIX}/share )
+
+# Create a tesseractConfig.cmake file for the use from the build tree
+CONFIGURE_FILE(tesseractConfig.cmake.in
+  "${CMAKE_CURRENT_BINARY_DIR}/tesseractConfig.cmake" @ONLY)
+CONFIGURE_FILE(Usetesseract.cmake.in
+  "${CMAKE_CURRENT_BINARY_DIR}/Usetesseract.cmake" @ONLY)
 
 ########### install files ###############
 
