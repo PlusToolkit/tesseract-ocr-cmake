@@ -6,7 +6,7 @@
 # Tell the user project where to find our headers and libraries
 SET(tesseract_INCLUDE_DIRS "@tesseract_INCLUDE_DIRS@")
 SET(tesseract_LIBRARY_DIRS "@tesseract_LIBRARY_DIRS@")
-SET(tesseract_LIBRARIES "@TESSERACT_LIBRARIES")
+SET(tesseract_LIBRARIES "@TESSERACT_LIBRARIES@")
 SET(tesseract_DATA_DIR "@tesseract_DATA_DIR@")
 
 # Tell the user project where to find the tesseract use file
