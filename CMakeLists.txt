@@ -1,7 +1,13 @@
 project(tesseract-ocr)
 cmake_minimum_required(VERSION 2.8)
 
-include_directories(${LEPTONICA_INCLUDE_DIRS})
+SET(LEPTONICA_src_DIR "LEPTONICA_INCLUDE_DIRS_DIRECTORY-NOT-FOUND" CACHE PATH "Path to leptonica include directory" )
+
+IF("${LEPTONICA_src_DIR}" STREQUAL "LEPTONICA_INCLUDE_DIRS_DIRECTORY-NOT-FOUND")
+  MESSAGE(FATAL_ERROR "Cannot use leptonica if LEPTONICA_src_DIR is not defined.")
+ENDIF() 
+
+include_directories(${LEPTONICA_src_DIR})
 
 add_definitions(-DUSE_STD_NAMESPACE)
 add_definitions(-fPIC)
