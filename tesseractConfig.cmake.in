@@ -1,13 +1,47 @@
-# - Config file for the tesseract package
-# It defines the following variables
-#  tesseract_INCLUDE_DIRS - include directories for tesseract
-#  tesseract_LIBRARY_DIRS - library directories for tesseract
- 
-# Tell the user project where to find our headers and libraries
-SET(tesseract_INCLUDE_DIRS "@tesseract_INCLUDE_DIRS@")
-SET(tesseract_LIBRARY_DIRS "@tesseract_LIBRARY_DIRS@")
-SET(tesseract_LIBRARY tesseract_static)
-SET(tesseract_DATA_DIR "@tesseract_DATA_DIR@")
+# ===================================================================================
+#  The tesseract CMake configuration file
+#
+#             ** File generated automatically, do not modify **
+#
+#  Usage from an external project:
+#    In your CMakeLists.txt, add these lines:
+#
+#    find_package(tesseract REQUIRED)
+#    include_directories(${tesseract_INCLUDE_DIRS})
+#    target_link_libraries(MY_TARGET_NAME ${tesseract_LIBRARIES})
+#
+#    This file will define the following variables:
+#      - tesseract_LIBRARIES             : The list of all imported targets
+#      - tesseract_INCLUDE_DIRS          : The tesseract include directories.
+#      - tesseract_VERSION               : The version of this tesseract build: "@tesseract_VERSION@"
+#      - tesseract_VERSION_MAJOR         : Major version part of tesseract_VERSION: "@tesseract_VERSION_MAJOR@"
+#      - tesseract_VERSION_MINOR         : Minor version part of tesseract_VERSION: "@tesseract_VERSION_MINOR@"
+#
+# ===================================================================================
+if(@Leptonica_FOUND@)
+  SET(Leptonica_DIR "@Leptonica_DIR@")
+  FIND_PACKAGE(Leptonica)
+endif()
 
-# Tell the user project where to find the tesseract use file
-SET(tesseract_USE_FILE "@CMAKE_CURRENT_BINARY_DIR@/Usetesseract.cmake" )
+INCLUDE(${CMAKE_CURRENT_LIST_DIR}/TesseractTargets.cmake)
+
+# ======================================================
+#  Version variables:
+# ======================================================
+
+SET(tesseract_VERSION           @tesseract_VERSION@)
+SET(tesseract_VERSION_MAJOR     @tesseract_VERSION_MAJOR@)
+SET(tesseract_VERSION_MINOR     @tesseract_VERSION_MINOR@)
+
+# ======================================================
+# Include directories to add to the user project:
+# ======================================================
+
+# Provide the include directories to the caller
+SET(tesseract_INCLUDE_DIRS @tesseract_INCLUDE_DIRS@)
+
+# ====================================================================
+# Link libraries:
+# ====================================================================
+
+SET(tesseract_LIBRARIES @tesseract_LIBRARIES@)
