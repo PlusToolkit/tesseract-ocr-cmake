@@ -45,3 +45,9 @@ SET(tesseract_INCLUDE_DIRS @tesseract_INCLUDE_DIRS@)
 # ====================================================================
 
 SET(tesseract_LIBRARIES @tesseract_LIBRARIES@)
+
+# ====================================================================
+# Data directory:
+# ====================================================================
+
+SET(tesseract_DATA_DIR "@tesseract_DATA_DIR@")
